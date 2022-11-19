@@ -19,6 +19,9 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[]);
 static eCommandResult_T ConsoleCommandHelp(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[]);
+static eCommandResult_T ConsoleCommandSnesInput(const char buffer[]);
+static eCommandResult_T ConsoleCommandTestPattern(const char buffer[]);
+static eCommandResult_T ConsoleCommandTestPattern2(const char buffer[]);
 
 static const sConsoleCommandTable_T mConsoleCommandTable[] =
 {
@@ -27,6 +30,9 @@ static const sConsoleCommandTable_T mConsoleCommandTable[] =
     {"ver", &ConsoleCommandVer, HELP("Get the version string")},
     {"int", &ConsoleCommandParamExampleInt16, HELP("How to get a signed int16 from params list: int -321")},
     {"u16h", &ConsoleCommandParamExampleHexUint16, HELP("How to get a hex u16 from the params list: u16h aB12")},
+    {"snesinput", &ConsoleCommandSnesInput, HELP("Display input from SNES controller")},
+    {"testpattern", &ConsoleCommandTestPattern, HELP("Display Test Pattern on LCD")},
+    {"testpattern2", &ConsoleCommandTestPattern2, HELP("Display Test Pattern 2 on LCD")},
 
 	CONSOLE_COMMAND_TABLE_END // must be LAST
 };
@@ -75,6 +81,7 @@ static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[])
 	}
 	return result;
 }
+
 static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[])
 {
 	uint16_t parameterUint16;
@@ -100,6 +107,38 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[])
 	return result;
 }
 
+static eCommandResult_T ConsoleCommandSnesInput(const char buffer[])
+{
+	eCommandResult_T result = COMMAND_SUCCESS;
+
+    IGNORE_UNUSED_VARIABLE(buffer);
+
+	ConsoleIoSendString("SNES Input will be displayed");
+	ConsoleIoSendString(STR_ENDLINE);
+	return result;
+}
+
+static eCommandResult_T ConsoleCommandTestPattern(const char buffer[])
+{
+	eCommandResult_T result = COMMAND_SUCCESS;
+
+    IGNORE_UNUSED_VARIABLE(buffer);
+
+	ConsoleIoSendString("Test Pattern 1 will be displayed");
+	ConsoleIoSendString(STR_ENDLINE);
+	return result;
+}
+
+static eCommandResult_T ConsoleCommandTestPattern2(const char buffer[])
+{
+	eCommandResult_T result = COMMAND_SUCCESS;
+
+    IGNORE_UNUSED_VARIABLE(buffer);
+
+	ConsoleIoSendString("Test Pattern 2 will be displayed");
+	ConsoleIoSendString(STR_ENDLINE);
+	return result;
+}
 
 const sConsoleCommandTable_T* ConsoleCommandsGetTable(void)
 {
